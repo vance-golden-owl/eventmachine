@@ -1,0 +1,26 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+local_config: &local_config
+  user: postgres
+  password: 1234
+  host: localhost
+
+development:
+  <<: *default
+  database: eventmachine_development
+  <<: *local_config
+  
+
+test:
+  <<: *default
+  database: eventmachine_test
+  <<: *local_config
+
+production:
+  <<: *default
+  database: eventmachine_production
+  username: eventmachine
+  password: <%= ENV["EVENTMACHINE_DATABASE_PASSWORD"] %>
