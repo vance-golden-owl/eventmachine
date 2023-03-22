@@ -7,11 +7,8 @@ class MessageForwardJob < ApplicationJob
     @message_content = params[:event][:text]
     @client = Slack::Web::Client.new
 
-    user_info = @client.users_info(user: @user_id)
-    username = user_info&.user&.name || 'Unknown'
-
     Telegram::SendMessageService.call(
-      "#{slack_channel.name}-#{username}: #{@message_content}"
+      "#{slack_channel.name}/#{slack_user.name}: #{@message_content}"
     )
   end
 
@@ -24,5 +21,16 @@ class MessageForwardJob < ApplicationJob
     end
 
     channel
+  end
+
+  def slack_user 
+    user = SlackUser.find_by(user_id: @user_id)
+
+    if user.nil?
+      user_info = @client.users_info(user: @user_id)
+      user = SlackUser.create(name: user_info.user.name, user_id: @user_id)
+    end
+
+    user
   end
 end
