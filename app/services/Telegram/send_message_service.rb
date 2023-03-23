@@ -9,7 +9,7 @@ module Telegram
       HTTParty.post(
         telegram_url,
         body: {
-          chat_id: ENV['TELEGRAM_BOT_CHANNEL_ID'],
+          chat_id: ENV['TELEGRAM_BOT_GROUP_ID'],
           text: @text
         }.to_json,
         headers: { 'Content-Type' => 'application/json' }

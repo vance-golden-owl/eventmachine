@@ -2,3 +2,13 @@ h1
   | EVENTMACHINE APP
 h2 
   | Help you forward all messages from choosen Slack's workspace to Telegram channel!
+
+- if @telegram_group.nil?
+  . 
+    p 
+      | Look like you don't have a Telegram group to forward message to...
+    
+    = link_to "Setup telegram group to forward message", new_telegram_group_path
+
+- else 
+  = @telegram_group.name

@@ -1,0 +1,17 @@
+h1 
+  | ADD A TELEGRAM GROUP
+
+.
+  = form_with model: @telegram_group do |f|
+    = f.label :name, "Name:"
+    = f.text_field :name
+    = f.label :id_on_telegram, "Group ID:"
+    = f.text_field :id_on_telegram
+    = f.submit
+
+. 
+  h2 
+    | Need help with Group ID? Add Relay bot to group and click the button below for Group ID 
+  button 
+    | Find group ID
+
