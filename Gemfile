@@ -34,4 +34,4 @@ end
 
 gem 'sidekiq', '~> 7.0'
 
-gem "dockerfile-rails", ">= 1.2", :group => :development
+gem 'dockerfile-rails', '>= 1.2', group: :development
