@@ -1,5 +1,5 @@
 class SlackChannel < ApplicationRecord
   # validations
   validates :name, presence: true
-  validates :channel_id, presence: true, uniqueness: true
+  validates :id_on_slack, presence: true, uniqueness: true
 end

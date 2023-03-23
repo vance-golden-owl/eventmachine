@@ -1,4 +1,6 @@
-class TelegramGroupsController < ApplicationController 
+class TelegramGroupsController < ApplicationController
+  before_action :authenticate_user!
+
   def show 
     
   end

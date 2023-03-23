@@ -7,5 +7,6 @@ Rails.application.routes.draw do
 
   namespace :webhooks do 
     post "slack/endpoint", to: "slack#endpoint"
+    post "telegram/endpoint", to: "telegram#endpoint"
   end
 end

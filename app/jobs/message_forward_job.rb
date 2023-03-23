@@ -16,7 +16,8 @@ class MessageForwardJob < ApplicationJob
 
     if channel.nil?
       channel_info = client.conversations_info(channel: @channel_id)
-      channel = SlackChannel.create(name: channel_info.channel.name, id_on_slack: @channel_id)
+      channel_name = channel_info.channel.name || "direct"
+      channel = SlackChannel.create(name: channel_name, id_on_slack: @channel_id)
     end
 
     channel
