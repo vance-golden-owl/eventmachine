@@ -15,10 +15,10 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'bootsnap', require: false
 gem 'slack-ruby-client'
 gem 'httparty'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
-  gem 'dotenv-rails'
 end
 
 group :development do
@@ -33,3 +33,5 @@ group :test do
 end
 
 gem 'sidekiq', '~> 7.0'
+
+gem "dockerfile-rails", ">= 1.2", :group => :development

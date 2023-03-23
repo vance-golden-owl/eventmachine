@@ -89,6 +89,8 @@ GEM
     debug (1.7.1)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
+    dockerfile-rails (1.2.5)
+      rails
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
@@ -149,6 +151,8 @@ GEM
       net-protocol
     nio4r (2.5.8)
     nokogiri (1.14.2-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.14.2-x86_64-linux)
       racc (~> 1.4)
     parallel (1.22.1)
     parser (3.2.1.1)
@@ -263,11 +267,13 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap
   capybara
   debug
+  dockerfile-rails (>= 1.2)
   dotenv-rails
   httparty
   importmap-rails
