@@ -5,7 +5,6 @@ class MessageForwardJob < ApplicationJob
     @channel_id = params[:event][:channel]
     @messenger_id = params[:event][:user]
     @message_content = params[:event][:text]
-    @client = Slack::Web::Client.new
 
     Telegram::SendMessageService.call(
       "#{slack_channel.name}/#{slack_messenger.name}: #{@message_content}"
@@ -16,7 +15,7 @@ class MessageForwardJob < ApplicationJob
     channel = SlackChannel.find_by(id_on_slack: @channel_id)
 
     if channel.nil?
-      channel_info = @client.conversations_info(channel: @channel_id)
+      channel_info = client.conversations_info(channel: @channel_id)
       channel = SlackChannel.create(name: channel_info.channel.name, id_on_slack: @channel_id)
     end
 
@@ -27,10 +26,14 @@ class MessageForwardJob < ApplicationJob
     messenger = SlackMessenger.find_by(id_on_slack: @messenger_id)
 
     if messenger.nil?
-      messenger_info = @client.users_info(user: @messenger_id)
+      messenger_info = client.users_info(user: @messenger_id)
       messenger = SlackMessenger.create(name: messenger_info.user.name, id_on_slack: @messenger_id)
     end
 
     messenger
+  end
+
+  def client 
+    Slack::Web::Client.new
   end
 end
