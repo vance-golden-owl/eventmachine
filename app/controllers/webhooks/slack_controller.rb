@@ -6,7 +6,7 @@ module Webhooks
         return
       end
 
-      MessageForwardJob.perform_later(permitted_params)
+      SlackMessageForwardJob.perform_later(permitted_params)
     end
 
     private

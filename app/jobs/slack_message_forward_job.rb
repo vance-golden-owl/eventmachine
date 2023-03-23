@@ -1,4 +1,4 @@
-class MessageForwardJob < ApplicationJob
+class SlackMessageForwardJob < ApplicationJob
   queue_as :default
 
   def perform(params)
@@ -7,7 +7,7 @@ class MessageForwardJob < ApplicationJob
     @message_content = params[:event][:text]
 
     Telegram::SendMessageService.call(
-      "#{slack_channel.name}/#{slack_messenger.name}: #{@message_content}"
+      "#{slack_channel.id_on_slack}-#{slack_channel.name}/#{slack_messenger.name}: #{@message_content}"
     )
   end
 
